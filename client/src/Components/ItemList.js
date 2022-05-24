@@ -2,45 +2,54 @@ import ItemPreview from "./ItemPreview";
 import { getBookPage } from "./Api"
 
 import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Grid from "@mui/material/Grid"
 
+let currPageNum = 0
+
 const ItemList = () => {
+
    const [books, setBooks] = useState([]);
    const [isLoading, setIsLoading] = useState(true)
+   const [hasMore, setHasMore] = useState(true)
 
-   const getAllbooks = async () => {
-      let i = 0
-      let res = []
-      let data = []
-      do {
-         const temp = await getBookPage(i++)
-         data = temp.data
-         res = res.concat(data)
+   const getNextPage = async () => {
+      const temp = await getBookPage(currPageNum++)
+      const { data } = temp
+      setBooks(books.concat(data))
+      if (data.length === 0) {
+         setHasMore(false)
       }
-      while (data.length > 0)
-      return res
+      return
    }
 
    useEffect(() => {
-      async function getBooks() {
-         const res = await getAllbooks()
+      async function getInitialBooks() {
+         const res = await getNextPage()
          return res
       }
-      getBooks().then((res) => { setBooks(res) })
-      setIsLoading(false)
+      getInitialBooks().then((res) => { setIsLoading(false) })
+
+      // restore currPageNum=0 on cleanup
+      return () => { currPageNum = 0 }
    }, [])
 
    return (
-      <div className="itemList">
+      <div className="item-list">
          {isLoading && <div>Loading...</div>}
          <div className="item-list-content" >
-            <Grid container spacing={0}>
-               {books.map((book, index) => {
-                  return (<Grid item xs={3} key={index}>
-                     <ItemPreview book={book} id={book._id}></ItemPreview>
-                  </Grid>)
-               })}
-            </Grid>
+            <InfiniteScroll
+               dataLength={books.length}
+               next={getNextPage}
+               hasMore={hasMore}>
+               <Grid container spacing={0}>
+                  {books.map((book, index) => {
+                     return (<Grid item xs={3} key={index}>
+                        <ItemPreview book={book} id={book._id}></ItemPreview>
+                     </Grid>)
+                  })}
+               </Grid>
+            </InfiniteScroll>
          </div>
       </div >
    );
