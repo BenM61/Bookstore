@@ -1,5 +1,5 @@
 const booksDAL = require("./booksDAL")
-const ReceiptsDAL = require("./ReceiptsDAL")
+const ReceiptsDAL = require("./recieptsDAL")
 
 const getBookPage = async (pageNum) => {
   const res = await booksDAL.getBookPage(pageNum)
