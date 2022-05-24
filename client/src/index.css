@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Josefin+Sans:wght@700&family=Quicksand:wght@300;700&display=swap');
+
+* {
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  font-size: 20px;
+  max-width: 10360px;
+  max-height: 2000px;
+  background-color: rgb(236, 236, 236);
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navbar {
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  max-width: 100%;
+  margin: 0 auto;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.navbar a {
+  margin-left: 16px;
+  text-decoration: none;
+  padding: 6px;
+}
+
+.navbar a:hover {
+  color: #f1356d;
+}
+
+.recipt-details {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.recipt-item {
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.rec-money {
+  width: 40%;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.rec-amount {
+  color: #ababab;
+}
+
+.rec-title {
+  color: #393939;
+}
+
+.rec-price {
+  color: green;
+}
+
+.item-list-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.book-box {
+  max-width: fit-content;
+  max-height: fit-content;
+  width: 300px;
+  height: 650px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.home {
+  color: wheat;
+  height: 480px;
+  background-size: 100% 100%;
+  background-image: url("https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip")
+}
+
+.shop-item {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.change-amount {
+  display: flex;
+  width: 10%;
+  justify-content: space-between;
+  margin: 15px;
+}
+
+.shop-item-image {
+  width: 240px;
+  height: auto;
+}
+
+.thank-you {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.item-preview img {
+  width: 95%;
+  height: 25vw;
+  border: #000 solid 1px;
+}
