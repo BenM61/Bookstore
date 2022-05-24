@@ -2,7 +2,7 @@ import Home from './Components/Home';
 import Navbar from './Components/Navbar';
 import Shop from "./Components/Shop";
 import Item from "./Components/Item";
-import Recipt from "./Components/Recipt";
+import Receipt from "./Components/Receipt";
 
 import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -18,7 +18,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path='/books' element={<Shop />} />
             <Route path='/books/:id' element={<Item selectedBooks={selectedBooks} changeBooks={setSelectedBooks} />} />
-            <Route path='/payment' element={<Recipt purchase={selectedBooks} />} />
+            <Route path='/payment' element={<Receipt purchase={selectedBooks} />} />
           </Routes>
         </div>
       </BrowserRouter>

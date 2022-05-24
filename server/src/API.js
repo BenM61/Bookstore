@@ -22,19 +22,19 @@ app.get('/books/page/:pageNum', async (req, res) => {
   res.send(books)
 })
 
-app.get('/recipts/:id', async (req, res) => {
-  const recipt = await services.getRecipt(req.params.id)
-  res.send(recipt)
+app.get('/Receipts/:id', async (req, res) => {
+  const Receipt = await services.getReceipt(req.params.id)
+  res.send(Receipt)
 })
 
-app.post('/recipts/add', async (req, res) => {
-  await services.addRecipt(req.body)
+app.post('/Receipts/add', async (req, res) => {
+  await services.addReceipt(req.body)
   res.send("success!")
 })
 
-app.get('/recipts', async (req, res) => {
-  const recipts = await services.getRecipts()
-  res.send(recipts)
+app.get('/Receipts', async (req, res) => {
+  const Receipts = await services.getReceipts()
+  res.send(Receipts)
 })
 
 app.listen(port, () => {

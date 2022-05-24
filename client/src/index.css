@@ -42,7 +42,7 @@ code {
   color: #f1356d;
 }
 
-.recipt-details {
+.Receipt-details {
   margin-top: 50px;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ code {
   width: 100%;
 }
 
-.recipt-item {
+.Receipt-item {
   width: 100%;
   padding: 10px;
   display: flex;

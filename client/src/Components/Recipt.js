@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useNavigate } from "react-router"
-import { postRecipt } from "./Api"
+import { postReceipt } from "./Api"
 
-const Recipt = (props) => {
+const Receipt = (props) => {
   const navigate = useNavigate()
   const [purchaseComplete, setPurchaseComplete] = useState(false)
   let purchase = props.purchase
@@ -22,16 +22,16 @@ const Recipt = (props) => {
     purchase.map(({ _id, title, price, amount }) => {
       description.push({ _id, title, price, amount })
     })
-    postRecipt(curr_date, total, description)
+    postReceipt(curr_date, total, description)
     setPurchaseComplete(true)
   }
 
   return (
-    <div className="recipt">
-      <div className="recipt-details">
+    <div className="Receipt">
+      <div className="Receipt-details">
         {purchase.map(({ _id, title, price, amount }) => {
           return (
-            <div className="recipt-item" key={_id}>
+            <div className="Receipt-item" key={_id}>
               <div className="rec-title">{title}: </div>
               <div className="rec-money">
                 <div className="rec-price">${price} </div>
@@ -55,4 +55,4 @@ const Recipt = (props) => {
   );
 }
 
-export default Recipt;
+export default Receipt;

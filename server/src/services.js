@@ -1,5 +1,5 @@
 const booksDAL = require("./booksDAL")
-const reciptsDAL = require("./reciptsDAL")
+const ReceiptsDAL = require("./ReceiptsDAL")
 
 const getBookPage = async (pageNum) => {
   const res = await booksDAL.getBookPage(pageNum)
@@ -11,19 +11,19 @@ const getBook = async (id) => {
   return res
 }
 
-const getRecipts = async () => {
-  const res = await reciptsDAL.getAllRecipts()
+const getReceipts = async () => {
+  const res = await ReceiptsDAL.getAllReceipts()
   return res
 }
 
-const getRecipt = async (id) => {
-  const res = await reciptsDAL.getSingleRecipt(id)
+const getReceipt = async (id) => {
+  const res = await ReceiptsDAL.getSingleReceipt(id)
   return res
 }
 
-const addRecipt = async (recipt) => {
-  await reciptsDAL.addRecipt(recipt)
+const addReceipt = async (Receipt) => {
+  await ReceiptsDAL.addReceipt(Receipt)
   return
 }
 
-module.exports = { getBookPage, getBook, getRecipts, getRecipt, addRecipt }
+module.exports = { getBookPage, getBook, getReceipts, getReceipt, addReceipt }

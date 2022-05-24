@@ -64,8 +64,8 @@ const initBooks = async () => {
   collection.insertMany(books)
 }
 
-const initRecipts = async () => {
-  const recipt1 = {
+const initReceipts = async () => {
+  const Receipt1 = {
     date: "18-3-2000",
     total: "320.24",
     description: [{
@@ -79,7 +79,7 @@ const initRecipts = async () => {
     }]
   }
 
-  const recipt2 = {
+  const Receipt2 = {
     date: "1-1-2001",
     total: "82.49",
     description: [{
@@ -89,13 +89,13 @@ const initRecipts = async () => {
     }]
   }
 
-  let recipts = [recipt1, recipt2]
+  let Receipts = [Receipt1, Receipt2]
 
   const db = await instanciateDB()
-  const collection = db.collection(config.db.RECIPTS_COL_NAME)
-  collection.insertMany(recipts)
+  const collection = db.collection(config.db.ReceiptS_COL_NAME)
+  collection.insertMany(Receipts)
 }
 
 //initBooks()
-//initRecipts()
+//initReceipts()
 

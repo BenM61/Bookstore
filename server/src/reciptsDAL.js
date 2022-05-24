@@ -3,27 +3,27 @@ const { ObjectId } = require('mongodb')
 const { config } = require("./config")
 const { instanciateDB } = require("./database/connector")
 
-const getReciptsCollection = async () => {
+const getReceiptsCollection = async () => {
   const db = await instanciateDB()
-  return db.collection(config.db.RECIPTS_COL_NAME)
+  return db.collection(config.db.ReceiptS_COL_NAME)
 }
 
-const getAllRecipts = async () => {
-  const reciptsCollection = await getReciptsCollection()
-  const res = await reciptsCollection.find({}).toArray()
+const getAllReceipts = async () => {
+  const ReceiptsCollection = await getReceiptsCollection()
+  const res = await ReceiptsCollection.find({}).toArray()
   return res
 }
 
-const getSingleRecipt = async (id) => {
-  const reciptsCollection = await getReciptsCollection()
-  const res = await reciptsCollection.findOne({ _id: ObjectId(id) })
+const getSingleReceipt = async (id) => {
+  const ReceiptsCollection = await getReceiptsCollection()
+  const res = await ReceiptsCollection.findOne({ _id: ObjectId(id) })
   return res
 }
 
-const addRecipt = async (recipt) => {
-  const reciptsCollection = await getReciptsCollection()
-  await reciptsCollection.insertOne(recipt)
+const addReceipt = async (Receipt) => {
+  const ReceiptsCollection = await getReceiptsCollection()
+  await ReceiptsCollection.insertOne(Receipt)
   return
 }
 
-module.exports = { getAllRecipts, getSingleRecipt, addRecipt }
+module.exports = { getAllReceipts, getSingleReceipt, addReceipt }
