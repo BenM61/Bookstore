@@ -1,17 +1,24 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 import { postReceipt } from "./Api"
 
 const Receipt = (props) => {
   const navigate = useNavigate()
   const [purchaseComplete, setPurchaseComplete] = useState(false)
-  let purchase = props.purchase
-  let total = 0
+  const { selectedBooks, setSelectedBooks } = props
+
+  let total
+
   const priceOfAll = () => {
-    for (let i of purchase) {
+    total = 0
+    for (let i of selectedBooks) {
       total += parseFloat(i.price) * i.amount
     }
     return total.toFixed(2);
+  }
+
+  const isValidPurchase = () => {
+    return selectedBooks.length > 0
   }
 
   const handle_purchase = async () => {
@@ -19,37 +26,51 @@ const Receipt = (props) => {
     const curr_date = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
     const total = priceOfAll()
     let description = []
-    purchase.map(({ _id, title, price, amount }) => {
+    selectedBooks.map(({ _id, title, price, amount }) => {
       description.push({ _id, title, price, amount })
     })
     postReceipt(curr_date, total, description)
     setPurchaseComplete(true)
   }
 
+  const removeItem = (_id) => {
+    setSelectedBooks((currBooks) =>
+      currBooks.filter((book) => book._id !== _id)
+    )
+  }
+
   return (
-    <div className="Receipt">
-      <div className="Receipt-details">
-        {purchase.map(({ _id, title, price, amount }) => {
+    <div className="receipt page">
+      <div className="receipt-preview">
+        {selectedBooks.map(({ _id, title, price, amount }) => {
           return (
-            <div className="Receipt-item" key={_id}>
-              <div className="rec-title">{title}: </div>
-              <div className="rec-money">
-                <div className="rec-price">${price} </div>
-                <div className="rec-amount">x{amount}</div>
+            <div className="receipt-item" key={_id}>
+              <div className="receipt-details">
+                <div className="rec-title">{title}: </div>
+                <div className="rec-money">
+                  <div className="rec-price">${price}</div>
+                  <div className="rec-amount">x{amount}</div>
+                </div>
               </div>
-            </div>
-          )
+              <button onClick={() => { removeItem(_id) }} className="cancel-item"></button>
+            </div>)
         })}
-        <div>
-          ------------------------------------------------------------
-          <br />The total price is: ${priceOfAll()}</div>
+        <div className="total-price">
+          <br />The total price is: ${priceOfAll()}
+        </div>
+        <br />
 
-
-        {!purchaseComplete && <button onClick={handle_purchase}>Confirm</button>}
-        {purchaseComplete && <div className="thank-you">
-          Thank you!
-          <button onClick={() => navigate("/")}>Home</button>
-        </div>}
+        {!purchaseComplete && !isValidPurchase()
+          && <button className="confirm" disabled onClick={handle_purchase}>
+            Confirm</button>}
+        {!purchaseComplete && isValidPurchase()
+          && <button className="confirm" onClick={handle_purchase}>Confirm</button>}
+        {
+          purchaseComplete && <div className="thank-you">
+            Thank you!
+            <button onClick={() => navigate("/")}>Home</button>
+          </div>
+        }
       </div>
     </div>
   );

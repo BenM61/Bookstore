@@ -7,6 +7,14 @@
   max-width: 1360px;
 }
 
+.page {
+  width: 100%;
+  padding-top: 50px;
+  background-color: #FBDA61;
+  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+  min-height: 500px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -41,33 +49,61 @@ code {
   color: #f1356d;
 }
 
-.Receipt-details {
-  margin-top: 50px;
+.content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+}
+
+.receipt {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   width: 100%;
 }
 
-.Receipt-item {
-  width: 100%;
-  padding: 10px;
+.receipt-details {
+  min-width: 320px;
+}
+
+.receipt-preview {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
 }
 
-.rec-money {
-  width: 40%;
+.receipt-item {
+  width: 100%;
   padding: 10px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
+}
+
+.cancel-item {
+  background-image: url("../res/x_button.png");
+  height: 25px;
+  width: 25px;
+  background-size: 25px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.total-price {
+  width: 100%;
+  border-top: black dashed 3px;
+}
+
+.rec-money {
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .rec-amount {
-  color: #ababab;
+  color: #7b7b7b;
 }
 
 .rec-title {
@@ -75,7 +111,7 @@ code {
 }
 
 .rec-price {
-  color: green;
+  color: rgb(0, 163, 0);
 }
 
 .item-list-content {
@@ -97,18 +133,25 @@ img {
 }
 
 .home {
+  padding-top: 0px;
+  padding-bottom: 50px;
+}
+
+.home-content {
+  width: 100%;
   color: wheat;
   height: 480px;
   background-size: 100% 100%;
   background-image: url("https://images.theconversation.com/files/45159/original/rptgtpxd-1396254731.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=754&fit=clip")
 }
 
-.shop-item {
+.item {
   display: flex;
-
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+
+  padding-top: 25px;
 }
 
 .change-amount {
@@ -118,8 +161,12 @@ img {
   margin: 15px;
 }
 
-.shop-item-image {
-  width: 240px;
+.item * {
+  font-size: 30px;
+}
+
+.item-image {
+  width: 270px;
   height: auto;
 }
 
@@ -135,7 +182,15 @@ img {
   height: 25vw;
 }
 
-.shop {
-  background-color: #FBDA61;
-  background-image: linear-gradient(45deg, #FBDA61 0%, #FF5ACD 100%);
+button {
+  border-radius: 20px;
+}
+
+button:hover {
+  box-shadow: 2px 2px 2px 2px darkslategray;
+}
+
+button:disabled:hover {
+  box-shadow: none;
+
 }

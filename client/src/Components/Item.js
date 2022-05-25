@@ -3,29 +3,25 @@ import { useLocation, Link } from "react-router-dom";
 
 
 const Item = (props) => {
-    const selectedBooks = props.selectedBooks
+    const { selectedBooks, setSelectedBooks } = props
 
     const { state } = useLocation()
     const { book } = state
     const [amount, setAmount] = useState(1)
 
+
     const handleClick = (e) => {
         book.amount = amount
-        const index = selectedBooks.findIndex(e =>
-            e._id === book._id
-        )
-        if (index >= 0) { selectedBooks.splice(index, 1) }
-        props.changeBooks([...selectedBooks, book])
-
-
+        const filtered = selectedBooks.filter((listBook) => listBook._id !== book._id)
+        setSelectedBooks(filtered.concat([book]))
     }
     const handleAmount = (c) => {
         setAmount((c === "+") ? amount + 1 : Math.max(1, amount - 1))
     }
     return (
-        <div className="shop-item">
+        <div className="item page">
             <h1>{book.title}</h1>
-            <img className="shop-item-image" src={book.image} alt={book.title}></img>
+            <img className="item-image" src={book.image} alt={book.title}></img>
             <br />
             <div className="change-amount">
                 <button onClick={() => handleAmount("-")}>-</button>

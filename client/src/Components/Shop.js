@@ -1,10 +1,10 @@
 import ItemList from "./ItemList";
 
-const Shop = () => {
+const Shop = (props) => {
+    const { currPageNum, setCurrPageNum } = props
     return (
-        <div className="shop">
-            <div className="shop-text">Welcome to our shop!</div>
-            <ItemList />
+        <div className="shop page">
+            <ItemList currPageNum={currPageNum} setCurrPageNum={setCurrPageNum} />
         </div>
     );
 }

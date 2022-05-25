@@ -8,7 +8,9 @@ import { useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
-  let [selectedBooks, setSelectedBooks] = useState([])
+  const [selectedBooks, setSelectedBooks] = useState([])
+  const [currPageNum, setCurrPageNum] = useState(0)
+
   return (
     <div className='App'>
       <BrowserRouter>
@@ -16,9 +18,9 @@ function App() {
         <div className='content'>
           <Routes>
             <Route index element={<Home />} />
-            <Route path='/books' element={<Shop />} />
-            <Route path='/books/:id' element={<Item selectedBooks={selectedBooks} changeBooks={setSelectedBooks} />} />
-            <Route path='/payment' element={<Receipt purchase={selectedBooks} />} />
+            <Route path='/books' element={<Shop currPageNum={currPageNum} setCurrPageNum={setCurrPageNum} />} />
+            <Route path='/books/:id' element={<Item selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />} />
+            <Route path='/payment' element={<Receipt selectedBooks={selectedBooks} setSelectedBooks={setSelectedBooks} />} />
           </Routes>
         </div>
       </BrowserRouter>
