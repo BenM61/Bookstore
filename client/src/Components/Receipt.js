@@ -52,7 +52,7 @@ const Receipt = (props) => {
                   <div className="rec-amount">x{amount}</div>
                 </div>
               </div>
-              <button onClick={() => { removeItem(_id) }} className="cancel-item"></button>
+              <button disabled={purchaseComplete} onClick={() => { removeItem(_id) }} className="cancel-item"></button>
             </div>)
         })}
         <div className="total-price">
@@ -68,7 +68,10 @@ const Receipt = (props) => {
         {
           purchaseComplete && <div className="thank-you">
             Thank you!
-            <button onClick={() => navigate("/")}>Home</button>
+            <button onClick={() => {
+              setSelectedBooks([])
+              navigate("/")
+            }}>Home</button>
           </div>
         }
       </div>
