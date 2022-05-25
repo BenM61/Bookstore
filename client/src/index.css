@@ -190,7 +190,6 @@ button:hover {
   box-shadow: 2px 2px 2px 2px darkslategray;
 }
 
-button:disabled:hover {
-  box-shadow: none;
-
+.oops {
+  background-image: none
 }

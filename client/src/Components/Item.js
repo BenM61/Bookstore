@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 
 
 const Item = (props) => {
-    const { selectedBooks, setSelectedBooks } = props
+    const { selectedBooks, setSelectedBooks, setBad } = props
 
     const { state } = useLocation()
     const { book } = state
     const [amount, setAmount] = useState(1)
+    const navigate = useNavigate()
 
-
+    let x = 0
     const handleClick = (e) => {
+        if (book.price === "0.00") {
+            setBad(true)
+        }
         book.amount = amount
         const filtered = selectedBooks.filter((listBook) => listBook._id !== book._id)
         setSelectedBooks(filtered.concat([book]))
@@ -32,7 +36,6 @@ const Item = (props) => {
             <Link to="/books" >
                 <button onClick={handleClick}>Add to cart</button>
             </Link>
-
         </div >
     );
 }
