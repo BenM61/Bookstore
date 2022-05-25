@@ -6,12 +6,19 @@ const Receipt = (props) => {
   const navigate = useNavigate()
   const [purchaseComplete, setPurchaseComplete] = useState(false)
   const { selectedBooks, setSelectedBooks } = props
+  let [receiptBooks, setReceiptBooks] = useState([])
+
+  useEffect(() => {
+    if (!purchaseComplete) {
+      setReceiptBooks(selectedBooks)
+    }
+  }, [selectedBooks])
 
   let total
 
   const priceOfAll = () => {
     total = 0
-    for (let i of selectedBooks) {
+    for (let i of receiptBooks) {
       total += parseFloat(i.price) * i.amount
     }
     return total.toFixed(2);
@@ -31,6 +38,7 @@ const Receipt = (props) => {
     })
     postReceipt(curr_date, total, description)
     setPurchaseComplete(true)
+    setSelectedBooks([])
   }
 
   const removeItem = (_id) => {
@@ -42,7 +50,7 @@ const Receipt = (props) => {
   return (
     <div className="receipt page">
       <div className="receipt-preview">
-        {selectedBooks.map(({ _id, title, price, amount }) => {
+        {receiptBooks.map(({ _id, title, price, amount }) => {
           return (
             <div className="receipt-item" key={_id}>
               <div className="receipt-details">
@@ -68,10 +76,7 @@ const Receipt = (props) => {
         {
           purchaseComplete && <div className="thank-you">
             Thank you!
-            <button onClick={() => {
-              setSelectedBooks([])
-              navigate("/")
-            }}>Home</button>
+            <button onClick={() => { navigate("/") }}>Home</button>
           </div>
         }
       </div>
